@@ -1,8 +1,8 @@
-###  DATE: 
+###  DATE: 22.03.2024
 
-###  NAME: 
-###  ROLL NO :
-###  DEPARTMENT: 
+###  NAME: SREEKUMAR S
+###  ROLL NO : 212223240157
+###  DEPARTMENT: AIML
 
 
 # EXPERIMENT NO 05 INTERFACING ANALOG OUTPUT SERVO MOTOR WITH ARDUINO
@@ -45,21 +45,16 @@ An external controller (such as the Arduino) tells the servo where to go with a 
 
 ### Figure-03 SERVO MOTOR OVERVIEW 
 
+  ![image](https://user-images.githubusercontent.com/36288975/163544618-6eb8a7b5-7f1a-428a-8d9f-fd899b145efb.png)
  
 
+### FIGURE 04 CIRCUIT DIAGRAM:
 
- 
+![Screenshot 2024-03-22 161604](https://github.com/guru14789/EXPERIMENT-NO--05-INTERFACING-ANALOG-OUTPUT-SERVO-MOTOR-WITH-ARDUINO-/assets/151705853/82ad9f68-5220-4f6e-b652-3e614ae7aa48)
 
+ ### SCHEMATIC VIEW:
+ ![Screenshot 2024-03-22 161704](https://github.com/guru14789/EXPERIMENT-NO--05-INTERFACING-ANALOG-OUTPUT-SERVO-MOTOR-WITH-ARDUINO-/assets/151705853/42f88b44-4759-46fc-9c98-d0ff530da3bd)
 
-
-
-
-CIRCUIT DIAGRAM
- 
- 
- ![image](https://user-images.githubusercontent.com/36288975/163544618-6eb8a7b5-7f1a-428a-8d9f-fd899b145efb.png)
-
-### FIGURE 04 CIRCUIT DIAGRAM
 
 ### PROCEDURE:
 1.	Connect the circuit as per the circuit diagram 
@@ -74,15 +69,54 @@ CIRCUIT DIAGRAM
 
 
 ### PROGRAM :
- 
+```
+#include<Servo.h>
+Servo Serv1;
 
+  int pos=0;
+const int red = 8; 
+const int green = 9;
+void setup()
+{
+  Serv1.attach(6);
+  Serial.begin(9600);
+  pinMode(red,OUTPUT);
+  pinMode(green,OUTPUT);
+}
 
+void loop()
+{
+  for(pos=180;pos>=0;pos-=5)
+  {
+    Serv1.write(pos);
+    delay(200);
+    Serial.println(pos);
+    if(pos>120)
+  {
+    digitalWrite(red,HIGH);
+    delay(200);
+    digitalWrite(red,LOW);
+    delay(200);
+  }
+  }  
+  for(pos=0;pos<=180;pos+=5)
+  {
+    Serv1.write(pos);
+    delay(200);
+    Serial.println(pos);
+    if(pos<120){
+      digitalWrite(green,HIGH);
+    delay(200);
+    digitalWrite(green,LOW);
+    delay(200);
+    }
+  
+  }
+}
+```
+## OUTPUT:
+## GRAPH:
+![Screenshot 2024-03-22 161551](https://github.com/guru14789/EXPERIMENT-NO--05-INTERFACING-ANALOG-OUTPUT-SERVO-MOTOR-WITH-ARDUINO-/assets/151705853/e2eb9161-9a44-40b6-a2d8-bb209f316182)
 
-
-
-
-
-
-
-### RESULTS: 
-Arduino uno interfacing with servo motor is learned and angular position is controlled using PWM signal.
+## RESULTS:
+Arduino uno interfacing with the servo motor is learned and angular position is controlled using a PWM signal.
